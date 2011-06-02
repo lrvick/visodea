@@ -1,10 +1,18 @@
-This project never really got traction and is here for mostly reference purpouses.
+This is a django project aimed to be a full portal for people with ideas to pitch them to others to reach investment goals. 
 
-If anyone decideds they are passionate about this and want to give it some love, I would be more than happy to point you in the right direction.
+Similar to Kickstarter but has a whole system of privacy rules so people can control more sensitive projects. 
 
-I may clean up soem of these apps and roll them into their own repositories at some point as I have use of them.
+Aimed to be a general purpouse tool for people with good ideas, to document them and, seek angel investment. Kind of like a dating site only instead of men-seeking-women it was more of investors-seeing-projects and projects-seeking-investors. 
 
-One of my firs real user-facing django applications. 
+Project never really got traction and is here for mostly reference purpouses.
+
+It was working at one point, but would need a good beating to be made to work with a modern version of django
+
+If anyone decides they want to give any of this code some love, I would be more than happy to help. Hit me up on irc://irc.udderweb.com/#uw
+
+I may clean up some of these apps and roll them into their own repositories at some point as I have use of them.
+
+One of my first real user-facing django applications. 
 
 Huge thanks to @tsoporan for his help and patience to teach me new things through the course of this project.
 
