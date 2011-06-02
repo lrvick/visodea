@@ -1,0 +1,77 @@
+from django.contrib import auth
+from django import forms
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, SetPasswordForm
+from django.http import HttpResponseRedirect
+from django.shortcuts import render_to_response
+from accounts.forms import UserProfileForm, UserAccountForm, UserCreationFormExtended
+from django.template import RequestContext
+from django.contrib.auth.models import User
+from accounts.models import UserProfile
+from django.core.urlresolvers import reverse
+from projects.models import Project
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def overview(request):
+    user = request.user
+    profile = user.get_profile()
+    projects = Project.objects.filter(owner=user)
+    return render_to_response("overview.html", {
+        'user': user,
+        'profile': profile,
+        'projects': projects,
+    }, context_instance=RequestContext(request))
+
+@login_required 
+def account_edit(request):
+    account = request.user
+    if request.method == 'POST':
+        form = UserAccountForm(request.POST, instance=account)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('overview'))
+    else:
+        form = UserAccountForm(instance=account)
+    return render_to_response("account.html", {
+        'account_form': form,
+    }, context_instance=RequestContext(request))
+
+def profile(request, username=None):
+    if username: 
+        user = User.objects.get(username=username)
+        profile = user.get_profile()
+    else:
+        user = request.user
+        profile = user.get_profile()
+    return render_to_response("profile.html", {
+        'user': user,
+        'profile': profile,
+    }, context_instance=RequestContext(request))
+
+@login_required 
+def profile_edit(request):
+    user = request.user
+    profile = user.get_profile()
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('profile', args=[user.username]))
+    else:
+        form = UserProfileForm(instance=profile)
+    return render_to_response("edit.html", {
+        'profile_form': form,
+    }, context_instance=RequestContext(request))
+
+def register(request):         
+    if request.method == 'POST':
+        form = UserCreationFormExtended(request.POST)
+        if form.is_valid():   
+            new_user = form.save()
+            new_profile = UserProfile(user=new_user) #create new profile with new_user instance
+            new_profile.save()            
+            return HttpResponseRedirect(reverse('success'))
+    else:                     
+        form = UserCreationFormExtended()
+    return render_to_response("register.html", locals(), context_instance=RequestContext(request))
+

@@ -1,0 +1,45 @@
+//////// TO DO ////////////////////////////////////////////////////////////////////////
+
+
+- Move "first name" and "last name" fields to profile instead of account. Account settings should be related to username/password only.
+- Pages module - "Template" field - Instead of regular text input, change to select box of available template files.
+- Merge "add users to project" form into "manage user" form.  Goal here is to have manage user form to be the one-stop-shop for project user management (add, edit, delete)
+- User to user messaging and notifications
+- Project RSS feeds
+- Project ratings (review with adam and mat)
+- Permissions framework (review with adam and mat)
+- List projects you have been added to along with the projects you own.
+- Email users when they are added to projects (notifications)
+- Project access request
+- Search auto-complete
+
+
+
+//////// ACCOMPLISHED ////////////////////////////////////////////////////////////////////////
+
+x Forgotten password functionality
+x Contact form
+x Account email verification
+x Add My Favorite features
+x Setting up framework to split up forms over multiple steps quickly as needed
+x User comments on projects
+x User profile picture
+x Attachments - have more info soon.
+x Add commas for dollar amounts (eg 1,000,000) for use in project.funding_target and project.funding_current
+
+
+
+
+
+-- FUTURE FEATURES --
+
+Notifications - Internal messaging system. 
+	- User-to-user messaging 
+	- Notification of project updates (new/updated attachments).
+	
+		Considerations:
+			- Integration with profile view
+			- Message view (email type interface for messages from other users) * May not be necessary if some ajaxy goodness can be integrated 
+			  into profile view.
+			  
+Project Ratings - Rate projects based on subjective criteria (criteria TBD)

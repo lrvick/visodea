@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block title %}Viewing Profile for {{ user.username }}{% endblock %}
+{% block path %}id="profile"{% endblock %}
+
+{% block content %}
+
+<div class="profilesec">
+<div id="profilepic">
+{% if profile.photo %} <img src="{{ profile.photo|thumbnail:"125x125" }}">{% endif %}
+<h4>{{ user.username}}</h4>
+</div>
+
+<div class="profileinfo">
+<p><span class="highlight">Name:</span>  {{ user.first_name }} {{ user.last_name }}</p>
+{% if profile.company %}<p><span class="highlight">Company:</span>  {{ profile.company }}</p>{% endif %}
+{% if profile.url %}<p><span class="highlight">Website:</span>   <a href="{{ profile.url }}" target="_blank">{{ profile.url }}</a></p>{% endif %}
+{% if profile.title %}<p><span class="highlight">Profession/Title: </span>{{ profile.title }}</p> {% endif %}
+{% if profile.city %}<p><span class="highlight">City:</span>  {{ profile.city }}</p>{% endif %}
+{% if profile.state %}<p><span class="highlight">State:</span>  {{ profile.state }}</p>{% endif %}
+{% if profile.country %}<p><span class="highlight">Country:</span>  {{ profile.country }}</p>{% endif %}
+<div class="profilebg">{% if profile.background %}<p><span class="highlight">Background:</span>  {{ profile.background }}</p>{% endif %}</div>
+<div class="profilebg">{% if profile.city %}<p><span class="highlight">Performance:</span>  {{ profile.performance }}</p>{% endif %}</div>
+
+<div class="projectfav"></div>
+{% if user.projectfavorite_set.all %}
+<h2>{{ user.first_name }}'s Favorite Projects</h2>
+
+{% for fav in user.projectfavorite_set.all %}
+<p><a href="{% url project-detail fav.project.slug %}">{{ fav.project.name}}</a></p> 
+{% endfor %}
+
+{% endif %}
+</div>
+</div>
+
+</div>
+
+{% endblock %}
+

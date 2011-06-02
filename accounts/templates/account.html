@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Account{% endblock %}
+
+{% block content %}
+<div class="pageContent">
+  <form action="" method="post"> {% csrf_token %}
+  <h4>Edit Account</h4>
+      {{ account_form.as_p }}
+      <input type="submit" value="Save Changes" class="submitBtn">
+  </form>
+</div>
+{% endblock %}
+

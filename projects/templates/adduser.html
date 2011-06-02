@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load smart_if %}
+
+{% block sidebar %}
+
+{% endblock %}
+{% block content %}
+
+{% if request.user == owner or member.level == 4%}
+<div class="pageContent">
+<h3> Add user to  {{ project.name }} </h3>
+
+{% if members %}
+<h4> Current Members: </h4>
+<ul class="currentMembers">
+{% for member in members %}
+    <li>{{ member }}</li>
+{% endfor %}
+</ul>
+{% else %}
+<p> This project currently has no members. </p>
+{% endif %}
+
+<h4> Add user: </h4>
+<form action="" method="post"> {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add" class="submitBtn">
+</form>
+
+{% else %}
+
+<p> You do not have permission to add users to this project. </p>
+
+{% endif %}
+
+</div>
+
+
+
+{% endblock %}

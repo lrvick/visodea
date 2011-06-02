@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load smart_if %}
+
+{% block sidebar %}
+<ul class="side-nav">
+	<li><a href="/projects/{{ project.slug }}/addfile" class="submitBtn">Manage Files</a></li>
+	<li><a href="/projects/{{ project.slug }}/manageusers" class="submitBtn">Manage Users</a></li>
+	<li><a href="/projects/{{ project.slug }}/manageusers" class="submitBtn">Create a Project</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<div class="pageContent">
+	{% if request.user == project.owner or member.level == 4 %}
+	<form action="" method="post"> {% csrf_token %}
+	<h3> Edit {{ project.name }} </h3>
+	
+	    {{ form.as_p }}
+	    <input type="submit" value="Save Changes" class="submitBtn">
+	</form>
+	{% else %}
+	<p> You do not have permission to edit this project. </p>
+	{% endif %}
+</div>
+
+
+{% endblock %}

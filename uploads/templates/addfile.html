@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load smart_if %}
+{% load filters %}
+{% block content %}
+<div class="pageContent">
+
+
+
+{% if request.user == owner or member.level == 4%}
+<form action="" method="post" enctype="multipart/form-data">
+<h4> Attach a file to {{ project.name }} </h4>	
+<h6> Choose a file: </h6>
+    {{ form.as_p }}
+    <input type="submit" value="Add" class="submitBtn">
+</form>
+
+<div class="section">
+<h5> Current Files </h5>
+    <table>
+		{% for a in attachments %}
+		<tr valign="middle">
+			<td class="file-icon" ><a href="{{ a.file.url }}" class="{{ a.file.name|ext }}_file"></a></td>
+			<td class="file-name">File: <span class="bold">{{ a.name }}</span></td>
+			<td class="file-preview"><a href="{{ a.file.url }}">view</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+
+    
+    
+
+{% else %}
+
+<p> You do not have permission to add files to this project. </p>
+
+{% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% load comments i18n %}
+<form action="{% comment_form_target %}" method="post"> {% csrf_token %}
+   <input type="hidden" name="next" value="{% url project-detail project.slug  %}" />
+    {{ form.comment }} 
+    {{ form.honeypot }} 
+    {{ form.content_type }} 
+    {{ form.object_pk }} 
+    {{ form.timestamp }} 
+    {{ form.security_hash }} 
+  <p class="submit">
+    <input type="submit" name="post" class="submit-post" value="{% trans "Post" %}" />
+  </p>
+</form>

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block sidebar %}
+<ul class="side-nav">
+	<li><a href="{% url overview %}" class="last">View my projects</a></li>
+	<li><a href="#" class="last">Delete a project</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<div class="pageContent">
+
+<form action="" method="post"> {% csrf_token %}
+<h3> Add Project </h3>
+    {{ form.as_p }}
+    <input type="submit" value="Add Project" class="submitBtn">
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>Visodea -  - Vision Accomplished.</title>
+<link href="/media/css/reset.css" media="all" rel="stylesheet" type="text/css"> 
+<link href="/media/css/style.css" media="all" rel="stylesheet" type="text/css"> 
+<script language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+<script language="javascript" src="/media/js/jquery.stylish-select.min.js" type="text/javascript"></script>
+<script language="javascript" src="/media/js/visodea.js" type="text/javascript"></script>
+<script type="text/javascript">
+{%if form.errors%}
+	$("div#panel").slideDown(400);
+{%endif%}
+</script>
+</head>
+<body>
+	
+<!-- TOP PANEL -->
+<div id="toppanel">
+	<!-- Panel -->
+	<div id="panel">
+		<div class="leftNav">
+			<a href="#">create an account</a>
+			<a href="#" class="last">retrieve password</a>
+		</div>
+		<div class="content">
+			<!-- Login Form -->
+			<form action="#" method="post"> {% csrf_token %}
+				<label for="username" id="username">user name:
+					<input type="text" name="username" value="" size="23">
+				</label>
+				<label for="pwd" id="password">password:
+					<input type="password" name="pwd" size="23">
+				</label>
+				<input type="submit" value="login" id="loginBtn">
+            	<label for="rememberme" id="remember"><input name="rememberme" id="rememberme" type="checkbox" checked="checked" value="forever">&nbsp;remember my password</label>
+			</form>
+		</div>
+	</div><!-- end panel -->	
+
+    <!-- Tab -->	
+	<div class="tab">
+		<ul>
+			<li><a href="#">sign up</a></li>
+			<li><a href="#">about</a></li>
+			<li><a href="#">espanol</a></li>
+		</ul>
+		<ul class="login">
+			<li id="toggle">
+				<a id="open" class="open" href="#">login</a>
+				<a id="close" style="display: none;" class="close" href="#"><img src="/media/img/close.png" alt="Close"></a>			
+			</li>
+		</ul> 
+	</div><!-- end Tab -->
+</div> 
+<!--panel -->
+
+<!-- HEADER -->
+<div class="header clearfix">
+	<form action="#" method="POST" id="search">
+		<input type="text" name="search" title="search opportunities" value="search opportunities">
+		<button type="submit">Search</button>
+	</form>
+	<h1><a href="#">Visodea</a></h1>
+</div>
+<!-- end header -->
+	
+<!-- PAGE -->
+<div class="pageWrap">
+	<div class="page" id="home">
+		<!-- Left Column -->
+		<div class="lCol">
+			<ul class="home-nav">
+				<li class="first"><a href="#">home</a></li>
+				<li><a href="#">about visodea</a></li>
+				<li class="last"><a href="#">getting started</a></li>
+			</ul><!-- end nav -->
+		</div><!-- end Left Column -->
+		
+		<!-- Right Column -->
+		<div class="rCol">
+			<div class="banner" id="">
+			<p>testing</p>
+			</div>
+			
+			<form>
+			<!-- STEP 1 -->
+			<fieldset>
+			<legend>Lets begin with the basics.</legend>
+				<input type="text" name="oppName" title="enter opportunity name" value="enter opportunity name">
+				<select name="financingType">
+					<option value="" selected="selected">type of financing</option> 
+					<option value="">Option 1</option>
+					<option value="">Option 2</option>
+					<option value="">Option 3</option>
+				</select>
+				<textarea name="oppGenInfo"></textarea>
+			</fieldset>
+			
+			<fieldset>
+			<input type="checkbox" name="useProfileInfo">
+			<input type="text" name="userStreetAddress">
+			<input type="text" name="userCity">
+			<select name="userState">
+				<option value="" selected="selected">Select a State</option> 
+				<option value="AL">Alabama</option> 
+				<option value="AK">Alaska</option> 
+				<option value="AZ">Arizona</option> 
+				<option value="AR">Arkansas</option> 
+				<option value="CA">California</option> 
+				<option value="CO">Colorado</option> 
+				<option value="CT">Connecticut</option> 
+				<option value="DE">Delaware</option> 
+				<option value="DC">District Of Columbia</option> 
+				<option value="FL">Florida</option> 
+				<option value="GA">Georgia</option> 
+				<option value="HI">Hawaii</option> 
+				<option value="ID">Idaho</option> 
+				<option value="IL">Illinois</option> 
+				<option value="IN">Indiana</option> 
+				<option value="IA">Iowa</option> 
+				<option value="KS">Kansas</option> 
+				<option value="KY">Kentucky</option> 
+				<option value="LA">Louisiana</option> 
+				<option value="ME">Maine</option> 
+				<option value="MD">Maryland</option> 
+				<option value="MA">Massachusetts</option> 
+				<option value="MI">Michigan</option> 
+				<option value="MN">Minnesota</option> 
+				<option value="MS">Mississippi</option> 
+				<option value="MO">Missouri</option> 
+				<option value="MT">Montana</option> 
+				<option value="NE">Nebraska</option> 
+				<option value="NV">Nevada</option> 
+				<option value="NH">New Hampshire</option> 
+				<option value="NJ">New Jersey</option> 
+				<option value="NM">New Mexico</option> 
+				<option value="NY">New York</option> 
+				<option value="NC">North Carolina</option> 
+				<option value="ND">North Dakota</option> 
+				<option value="OH">Ohio</option> 
+				<option value="OK">Oklahoma</option> 
+				<option value="OR">Oregon</option> 
+				<option value="PA">Pennsylvania</option> 
+				<option value="RI">Rhode Island</option> 
+				<option value="SC">South Carolina</option> 
+				<option value="SD">South Dakota</option> 
+				<option value="TN">Tennessee</option> 
+				<option value="TX">Texas</option> 
+				<option value="UT">Utah</option> 
+				<option value="VT">Vermont</option> 
+				<option value="VA">Virginia</option> 
+				<option value="WA">Washington</option> 
+				<option value="WV">West Virginia</option> 
+				<option value="WI">Wisconsin</option> 
+				<option value="WY">Wyoming</option>
+			</select>
+			<input type="text" name="userZip">
+			<input type="text" name="userPhone">
+			<input type="text" name="userEmail">
+			</fieldset>
+			<!-- END STEP 1 -->
+			
+			<!-- STEP 2 -->
+			
+			<fieldset>
+			<select name="oppMTTitle">
+				<option value="Mr.">Mr.</option> 
+				<option value="Mrs.">Ms.</option> 
+			</select>
+			<input type="text" name="oppMTfName">
+			<input type="text" name="oppMTlName">
+			<input type="text" name="oppMTPhone">
+			<input type="text" name="oppMTEmail">
+			</fieldset>
+			<!-- END STEP 2 -->
+			</form>
+			
+			
+			
+			
+			
+
+
+
+
+		</div><!-- end Right Column -->
+		
+	</div><!-- end page -->
+	<div class="spacer clearfix"></div>
+	<!-- Footer -->
+	<div class="footer">
+		<div class="footM">
+			<img src="/media/img/footLogo.png" alt="Visodea - Vision Accomplished." class="footLogo">
+			<ul>
+				<li><a href="#">Partnerships</a></li>
+				<li><a href="#">Advertise</a></li>
+				<li><a href="#">International</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+			<p class="copyright">&copy; 2010 Visodea.com <a href="#">Privacy</a> | <a href="#">Terms</a></p>
+		</div>
+	</div><!-- end footer -->
+</div>
+<!-- end page wrap -->
+	
+</body>
+</html>

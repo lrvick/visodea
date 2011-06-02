@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+
+<h1>Let us know what is on your mind</h1>
+
+<form method="post" action="">
+    {{ form.as_p }}
+    <input class="submitBtn" type="submit" value="Send Message" name="submit">
+</form>
+
+{% endblock %}

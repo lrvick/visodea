@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}My Projects{% endblock %}
+{% block path %}id="overview"{% endblock %}
+
+{% block sidebar %}
+<ul class="side-nav">
+	<li><a href="/account" class="submitBtn">Notifications</a></li> 
+	<li><a href="/projects/add" class="submitBtn">Add a new project</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="pageContent">
+	<div class="section">
+		<h4>Your projects</h4>
+	</div>
+{% for project in projects %}
+	<div class="result">
+	<h4><a href="{% url project-detail slug=project.slug %}">{{ project.name }}</a></h4>
+	<p>Created: <span class="bold">{{ project.date_created|date:"F j Y"}}</span></p>
+		<div class="options">
+			<a class="favorite" href="/projects/{{ project.name }}/edit">edit</a>
+			<ul class="dropdown">
+				<li>share
+				<ul class="shareLinks" id="{{ project.name }}">
+					<li><a href="mailto:?subject={{ project.name }} - Visodea.com&body=http://visodea.com/project/{{ project.slug }}" class="shareEmail">Email</a></li>
+					<li id="twitter"><a title="http://www.twitter.com" class="shareTwitter">Twitter</a></li>
+					<li id="facebook"><a title="http://www.facebook.com" class="shareFacebook">Facebook</a></li>
+				</ul>
+				</li>
+			</ul>
+			<a href="/projects/{{ project.slug }}" class="viewProject">view project ></a>
+		</div>
+	</div>
+{% endfor %}
+</div>
+{% endblock %}

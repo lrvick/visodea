@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Create an account{% endblock %}
+{% block sidebar %}
+<ul class="side-nav">
+	<li class="first"><a href="/">home</a></li>
+	<li><a href="/about-us">about visodea</a></li>
+	<li class="last"><a href="/getting-started">getting started</a></li>
+</ul><!-- end nav -->
+{% endblock %}
+{% block content %}
+<div class="pageContent">
+
+
+
+<div class="steps">
+	<ul>
+		<li>The Basics</li>
+		<li class="current">Professional Background</li>
+		<li class="last">Contact Information</li>
+	</ul>
+</div> 
+ 
+<p class="skipStep">Step {{ step }} of {{ step_count }}</p>
+
+<form action="" method="post"> {% csrf_token %}
+<h4>Share some details about your professional background</h4>
+  {{ form.as_p }}
+
+  <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+  {{ previous_fields|safe }}
+  <input type="submit" value="Next" class="submitBtn"> 
+</form>
+  
+</div>
+{% endblock %}
+

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block path %}id="home"{% endblock %}
+
+{% block sidebar %}
+<ul class="side-nav">
+	<li class="first"><a href="/">home</a></li>
+	<li><a href="/about-us">about visodea</a></li>
+	<li class="last"><a href="/getting-started">getting started</a></li>
+</ul><!-- end nav -->
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pellentesque pharetra condimentum. Sed commodo pharetra lacinia. Suspendisse rutrum consectetur pellen euismod sit amet tellus.</p>
+<p class="quote">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pellentesque pharetra condimentum."  - Adam</p>
+<p class="quote">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pellentesque pharetra condimentum."  - Adam</p>
+{% endblock %}
+
+
+{% block content %}
+<div class="banner">
+	<p>Vision accomplished.<a href="#">take the tour <img src="/media/img/arrowRight.png"</a></p>
+</div>
+<div class="pageContent">
+	<div class="home-links">
+		<a href="/projects/add" class="first">I have a project</a>
+		<a href="/projects" class="mid">I'm an Investor</a>
+		<a href="{% url page 'intro' %}" class="last">Getting started</a>
+		
+		<p class="first">The best way to share your ideas.</p>
+		<p class="mid">Take control of your opportuniuty.</p>
+		<p class="last">Search, invest, repeat.</p>
+		<p class="featured">Featured Opportunity: <a href="#" class="arrow">LOOPA is the most comprehensive social media monitoring and marketing tool.</a><img src="/media/img/arrow_g.png" alt="View More"></p>
+	</div>
+	
+	<div class="banner-bottom">
+		<a href="#" class="arrow">invest on visodea now<img src="/media/img/arrow_g.png" alt="View More"></a>
+	</div>
+</div>
+{% endblock %}
+

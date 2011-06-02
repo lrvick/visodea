@@ -1,0 +1,52 @@
+.Rating .wrapper {	
+	cursor: pointer;
+	background: #ccc;
+}
+
+.Rating .wrapper {
+	overflow: hidden;
+}
+
+.Rating span,.Rating .wrapper {
+	display: block;
+	width: 110px;
+	height: 25px;
+}
+
+.Rating span {
+	position: relative;
+	top: 0;
+	left: 0;
+	text-indent: -999em;
+}
+
+.Rating .ratingStars {
+	display: block;
+	background: url('../img/rating.png') no-repeat center;
+}
+
+.Rating .ratingFill {
+	background-color: #ff0000;
+}
+
+.Rating .ratingVoted {
+	cursor: default;
+	background-color: #0069ff;
+}
+
+.Rating .ratingActive {
+	background-color: #ffa800;
+}
+
+.Rating .ratingText {
+	color: #000;
+}
+
+.Rating .ratingText.ratingError {
+	color: #f00;	
+}
+
+.Rating .ratingText.loading {
+	background: url('../img/ajax-loading.gif') no-repeat;
+	text-indent: -999em;
+}

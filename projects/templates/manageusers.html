@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="pageContent">
+	<form action="" method="post"> {% csrf_token %}
+	<h3> Manage users for project : "{{ project.name }}" </h3>
+	    {{ formset }}
+	    <input type="submit" value="Save Changes" class="submitBtn">
+	</form>
+</div>
+
+
+{% endblock %}

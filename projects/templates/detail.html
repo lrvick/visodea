@@ -1,0 +1,174 @@
+{% extends 'base.html' %}'
+{% load smart_if %}
+{% load comments %}
+{% load filters %}
+{% load thumbnail %}
+{% block path %}id="projectDetail"{% endblock %}
+<!-- Sidebar -->
+{% block sidebar %}
+{% if member.level > 3 %}
+<ul class="side-nav">
+	<li><a href="/projects/{{ project.slug }}/edit" class="submitBtn">Edit Project</a></li>
+	<li><a href="/projects/{{ project.slug }}/addfile" class="submitBtn">Manage Files</a></li>
+	<li><a href="/projects/{{ project.slug }}/manageusers" class="submitBtn">Manage Users</a></li>
+	<li><a href="/projects/{{ project.slug }}/manageusers" class="submitBtn">Create a Project</a></li>
+</ul>
+{% endif %}
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+{% if project.is_public or member %}
+<div class="pageContent">
+  <div class="section">
+	{% if request.user == project.owner %}
+	<a class="edit" href="/projects/{{ project.slug }}/edit">edit</a>
+	{% endif %}
+	<h4>{{ project.name }}</h4>
+	<p>{{ project.description }}</p>
+  </div>
+  <div class="section">
+	{% if request.user == project.owner %}
+	<a class="edit" href="/projects/{{ project.slug }}/edit">edit</a>
+	{% endif %}
+	<h4>Pitch Video</h4>
+	<div class="introVideo">
+	{{ project.youtube_intro|youtube|safe }}
+	</div>
+  </div>
+  <div class="section">
+    <div id="progressbar" title="{{ project.funding_current|percentage:project.funding_target }}">
+	  <span class="current">Current: {{ project.funding_current|currency }}</span>
+	  <span class="target">Goal: {{ project.funding_target|currency }}</span>
+	  <span class="percent">{{ project.funding_current|percentage:project.funding_target }}%</span>
+	</div>
+  </div>
+  <div class="section" id="the-basics">
+    {% if request.user == project.owner %}
+	<a class="edit" href="/projects/{{ project.slug }}/edit">edit</a>
+	{% endif %}
+	<h4>The Basics</h4>
+	<p>Project Name: <span class="bold">{{ project.name }}</span></p>
+	<p>Address: <span class="bold">{{ project.street_line1 }} {{ project.street_line2 }} {{ project.city }}, {{ project.state }} {{ project.zip }}</span></p>	
+	<p>Phone: <span class="bold">{{ project.phone }}</span></p>
+	<p>Email: <span class="bold"><a href="mailto:{{ project.email }}">{{ project.email }}</a></span></p>
+	<p>Website: <span class="bold"><a href="{{ project.url }}" target="_blank">{{ project.url }}</a></span></p>
+  </div>
+    <!--
+	<div class="section">
+	{% if request.user == project.owner %}
+	<a class="edit" href="/projects/{{ project.slug }}/edit">edit</a>
+	{% endif %}
+		<h4>Business &amp; Financials</h4>
+        {% if project.funding_target %}
+        <p>Project funding goal: <span class="bold">{{ project.funding_target|currency }}</span></p>
+        {% endif %}
+        <p>Maximum number of investors: <span class="bold"> </span></p>
+		<p>Risk level: <span class="bold"> </span></p>
+		<p>Current income (monthly): <span class="bold"> </span></p>
+        <p>Current expenses (monthly): <span class="bold"> </span></p>
+	</div>
+    -->
+  {% if members %}
+  <div class="section">
+  	<h4>Management Team</h4>
+      <div id="mt">
+        {% for member in members %}
+        <h3 class="mt-member"><a href="#">{{member.user.first_name}} {{ member.user.last_name}}</a></h3>
+  		<div>
+          {% if member.user.get_profile.photo %}
+          <img src="{{ member.user.get_profile.photo|thumbnail:"100x100" }}">
+          {% endif %}
+          {% if member.user.get_profile.title %}
+          <p>Title: <span class="bold">{{ member.user.get_profile.title }}</span></p>
+          {% endif %}
+          {% if member.user.get_profile.company %}
+          <p>Company: <span class="bold">{{ member.user.get_profile.company }}</span></p>
+          {% endif %}
+          {% if member.user.get_profile.phone_mobile %}
+          <p>Phone: <span class="bold">{{ member.user.get_profile.phone_mobile }}</span></p>
+          {% endif %}
+          {% if member.user.get_profile.url %}
+          <p>Website: <span class="bold">{{ member.user.get_profile.url }}</span></p>
+          {% endif %}
+          <p>Email: <span class="bold">{{ member.user.email }}</span></p>
+          {% if member.user.get_profile.experience %}
+          <p>Experience: <span class="bold">{{ member.user.get_profile.experience }}</span></p>
+          {% endif %}
+          {% if member.user.get_profile.background %}
+          <p>Industry Background: <span class="bold">{{ member.user.get_profile.background }}</span></p>
+          {% endif %}
+  		  </div>
+        {% endfor%}
+  	</div>
+  </div>
+  {% endif %}
+  <div class="section">
+  {% if request.user == project.owner %}
+  <a class="edit" href="/projects/{{ project.slug }}/edit">edit</a>
+  {% endif %}
+  {% if attachments %}
+  	<h4>Files</h4>
+  	<table>
+      {% for a in attachments %}
+  	  <tr valign="middle">
+  	    <td class="file-icon" ><a href="{{ a.file.url }}" class="{{ a.file.name|ext }}_file"></a></td>
+  		<td class="file-name">File: <span class="bold">{{ a.name }}</span></td>
+  		<td class="file-preview"><a href="{{ a.file.url }}">view</a></td>
+  	  </tr>
+  	  {% endfor %}
+  	</table>
+  </div>
+  {% endif %}
+  {% get_comment_list for project as comment_list %}
+  {% if comment_list %}
+  <div class="section">
+      <h4>Comments</h4>
+      {% for comment in comment_list %}
+      <p>Comment by <a href="/account/{{ comment.user }}">{{comment.user}}</a> on {{comment.submit_date}}</p>
+        <p>{{ comment.comment }}</p>
+      {% endfor %}
+  </div>
+  {% endif %}
+  {% if user.is_authenticated %}
+  <div class="section">
+    <h4>Add Comment</h4>
+    {% render_comment_form for project %}
+  </div>
+  {% endif %}
+  {% if project.tags %}
+  <div class="section">
+    {% if request.user == project.owner %}
+    <a class="edit" href="/projects/{{ project.slug }}/edit">edit</a>
+    {% endif %}
+    <h4>Tags</h4>
+  	<div class="tags">
+  		<p>{{ project.tags }}</p>
+  	</div>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
+
+
+
+
+{% if member.level > 1 %}
+
+{% endif %}
+
+
+
+{% if member.level > 2 %}
+
+{% endif %}
+
+
+
+{% if member.level > 3 %}
+
+{% endif %}
+{% endblock %}
+
+
+
